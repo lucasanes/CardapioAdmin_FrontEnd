@@ -3,7 +3,6 @@ import { ToggleTheme } from '../../components/toggleTheme'
 import { Button, Card, Container } from './styles'
 import { useState } from 'react'
 import { MdEmail } from 'react-icons/md'
-import { BiSolidLockAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 import Validator from '../../services/validator';
 
@@ -40,6 +39,7 @@ export function Recovery({ }) {
           </Input>
 
           <Button type='submit' desabilitado={validator.email(email) != null} disabled={validator.email(email) != null}>ENVIAR</Button>
+          <Link to={'/'}>Voltar</Link>
 
         </Card>
 

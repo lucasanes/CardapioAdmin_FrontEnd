@@ -50,9 +50,10 @@ export const Card = styled('div', {
 
   a: {
     color: darkTheme.colors.pallet,
+    alignSelf: 'center',
     width: 'fit-content',
     fontFamily: 'Roboto',
-    fontSize: '1.4rem',
+    fontSize: '1.6rem',
     fontWeight: 700,
     textDecoration: 'none',
     transition: '.3s'
