@@ -9,7 +9,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const [data, setData] = useState<DataProps>({} as DataProps);
 
-  async function signIn(email: string, senha: string) {
+  async function signIn(email: string, senha: string, setValidateError: React.Dispatch<React.SetStateAction<{ error: string; msg: string; }>>) {
 
     try {
 
@@ -18,7 +18,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       const dadosUser = {
         username: response.data.user.username,
         email: response.data.user.email,
-        created_at: response.data.user.created_at
+        restaurante: response.data.user.restaurantes[0].nome
       }
 
       api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
@@ -29,7 +29,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       toast.success('Sucesso ao fazer login!')
 
     } catch (e: any) {
-      toast.error(e.response.data.msg)
+      setValidateError({ error: 'senha', msg: e.response.data.msg })
     }
 
   }
@@ -59,7 +59,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
           const dadosUser = {
             username: response.data.user.username,
             email: response.data.user.email,
-            created_at: response.data.user.created_at
+            restaurante: response.data.user.restaurantes[0].nome
           }
 
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

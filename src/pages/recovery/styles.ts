@@ -9,7 +9,7 @@ export const Container = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '2rem',
+  padding: '4rem',
 
   form: {
     display: 'flex',
@@ -23,7 +23,7 @@ export const Card = styled('div', {
 
   width: '100%',
   minWidth: '300px',
-  maxWidth: '500px',
+  maxWidth: '450px',
   background: darkTheme.colors.gray200,
   borderRadius: '1rem',
   padding: '3rem',
@@ -39,13 +39,6 @@ export const Card = styled('div', {
     marginBottom: '2rem',
     textAlign: 'center'
 
-  },
-
-  span: {
-    color: darkTheme.colors.hiContrast,
-    width: 'fit-content',
-    fontFamily: 'Roboto',
-    fontSize: '1.4rem',
   },
 
   a: {
@@ -65,6 +58,28 @@ export const Card = styled('div', {
 
 });
 
+export const ButtonAgain = styled('button', {
+
+  position: 'relative',
+  bottom: 28,
+  left: '100%',
+  transform: 'translateX(-100%)',
+  background: 'none',
+  border: 'none',
+  width: 'fit-content',
+  borderRadius: '.5rem',
+  color: darkTheme.colors.hiContrast,
+  fontFamily: 'Roboto',
+  fontSize: '1.4rem',
+  fontWeight: 100,
+  transition: '.3s',
+
+  '&:hover': {
+    filter: darkTheme.animations.buttonHover
+  }
+
+});
+
 export const Button = styled('button', {
 
   background: darkTheme.colors.pallet,
@@ -77,14 +92,22 @@ export const Button = styled('button', {
   padding: '1.5rem',
   transition: '.3s',
 
-  variants: {
-    desabilitado: {
-      false: {
-        '&:hover': {
-          filter: darkTheme.animations.buttonHover
-        }
-      }
-    }
+  '&:hover': {
+    filter: darkTheme.animations.buttonHover
   }
+
+});
+
+export const LinkButton = styled('button', {
+
+  color: darkTheme.colors.pallet,
+  background: 'none',
+  alignSelf: 'center',
+  border: 'none',
+  width: 'fit-content',
+  fontFamily: 'Roboto',
+  fontSize: '1.6rem',
+  fontWeight: 700,
+  transition: '.3s'
 
 });

@@ -24,8 +24,8 @@ export const { styled, css, keyframes, createTheme } = createStitches({
     media: {
         sm: "(min-width: 500px)",
         md: "(min-width: 800px)",
-        lg: "(min-width: 1100px)",
-        xlg: "(min-width: 1400px)",
+        lg: "(min-width: 950px)",
+        xlg: "(min-width: 1200px)",
     }
 });
 
@@ -41,7 +41,7 @@ export const darkTheme = createTheme({
         gray500: 'hsl(206,7%,45%)',
         gray600: 'hsl(206,7%,65%)',
 
-        pallet: '#008fb0ff',
+        pallet: '#007b80ff',
 
     },
 

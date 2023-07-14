@@ -1,16 +1,16 @@
 import { BrowserRouter } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
-import { AuthRoutes } from "./auth.routes";
+import { NoAuthRoutes } from "./noAuth.routes";
 import { UserRoutes } from "./user.routes";
 import { useEffect, useState } from "react";
 
 export function Routes() {
 
   const [isFirst, setIsFirst] = useState(0)
-  const {user} = useAuth()
+  const { user } = useAuth()
 
   useEffect(() => {
-  
+
     if (isFirst == 0) {
       setIsFirst(1)
     } else {
@@ -22,9 +22,9 @@ export function Routes() {
   return (
     <BrowserRouter>
       {(isFirst == 2 && user) ?
-          <UserRoutes/>
+        <UserRoutes />
         : (isFirst == 2 && !user) &&
-          <AuthRoutes/>
+        <NoAuthRoutes />
       }
     </BrowserRouter>
   );

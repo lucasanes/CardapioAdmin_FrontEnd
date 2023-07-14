@@ -49,7 +49,7 @@ export const GlobalStyles = globalCss({
     opacity: 0.5
   },
 
-  'input:-webkit-autofill': {
+  'input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, textarea:-webkit-autofill, textarea:-webkit-autofill:hover, textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofill:hover, select:-webkit-autofill:focus': {
     '-webkit-box-shadow': `0 0 0 30px ${darkTheme.colors.loContrast} inset`,
     '-webkit-text-fill-color': `${darkTheme.colors.hiContrast} !important`,
   },

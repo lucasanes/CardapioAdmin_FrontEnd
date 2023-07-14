@@ -3,6 +3,19 @@ import { darkTheme, styled } from '../../stitches.config';
 export const Container = styled('div', {
 
   width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+
+  span: {
+    color: '#ff0000',
+    marginTop: '1rem',
+  }
+
+});
+
+export const ContainerInput = styled('div', {
+
+  width: '100%',
   position: 'relative',
   borderRadius: '5px',
   background: darkTheme.colors.loContrast,
