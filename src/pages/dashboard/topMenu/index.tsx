@@ -1,14 +1,23 @@
 import { useAuth } from '../../../contexts/auth';
-import { Button, Buttons, Container, DropdownDiv, Intro } from './styles'
+import { Button, Buttons, Container, Intro } from './styles'
 import { GiChefToque } from 'react-icons/gi';
 import { useState, useEffect } from 'react';
 import { Dropdown } from '../../../components/dropdown';
+import { darkTheme } from '../../../stitches.config';
+import { useSwiper } from 'swiper/react';
 
-export function TopMenu({ }) {
+export function TopMenu() {
 
-  const { user } = useAuth()
+  const { restaurante } = useAuth()
 
   const [cell, setCell] = useState(false)
+
+  const swiper = useSwiper()
+  const [active, setActive] = useState(swiper.activeIndex)
+
+  swiper.on('slideChange', () => {
+    setActive(swiper.activeIndex)
+  })
 
   useEffect(() => {
 
@@ -31,19 +40,16 @@ export function TopMenu({ }) {
   return (
     <Container>
       {!cell && <Intro>
-        <GiChefToque style={{ transition: '.3s' }} size={30} color='#fff' />
+        <GiChefToque style={{ transition: '.3s' }} size={28} color={darkTheme.colors.midContrast} />
         <h1>Cardápio Admin</h1>
       </Intro>}
 
       <Buttons>
-        <Button active={false}>Categorias</Button>
-        <Button active={true}>Produtos</Button>
+        <Button onClick={() => swiper.slideTo(0)} active={active == 0}>Categorias</Button>
+        <Button onClick={() => swiper.slideTo(1)} active={active == 1}>Produtos</Button>
       </Buttons>
 
-      <DropdownDiv>
-        <img src="https://i.pinimg.com/736x/05/2c/17/052c17e923e9dba52146092458679719.jpg" />
-        <Dropdown nome={user?.restaurante} />
-      </DropdownDiv>
+      <Dropdown nome={restaurante?.name} img={restaurante?.img} />
     </Container>
   );
 }

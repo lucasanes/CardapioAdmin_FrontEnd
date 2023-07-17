@@ -1,5 +1,5 @@
 import { Container } from './styles'
-import Globo from '../../assets/svg/Globo.png'
+import Burguer from '../../assets/svg/Burguer.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -19,7 +19,7 @@ export function NotFound() {
   return (
     <Container>
       <div>
-        <h1>4{<img width={150} src={Globo} />}4</h1>
+        <h1>4{<img width={150} src={Burguer} />}4</h1>
         <h2>Página Não Encontrada</h2>
       </div>
       <div>

@@ -10,8 +10,12 @@ export type AuthContextProps = {
   user: {
     username: string,
     email: string,
-    restaurante: string,
   } | null | undefined,
+
+  restaurante: {
+    name: string,
+    img: string
+  } | null | undefined
 
   token: string | null | undefined,
 
@@ -22,8 +26,12 @@ export type DataProps = {
   user: {
     username: string,
     email: string,
-    restaurante: string,
   } | null,
+
+  restaurante: {
+    name: string,
+    img: string
+  } | null
 
   token: string | null,
 

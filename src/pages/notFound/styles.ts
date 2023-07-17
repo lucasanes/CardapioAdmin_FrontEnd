@@ -23,7 +23,8 @@ export const Container = styled('div', {
     '@md': {
       fontSize: '18rem',
       img: {
-        width: '200px'
+        width: '200px',
+        height: '230px'
       }
     }
   },
@@ -42,7 +43,7 @@ export const Container = styled('div', {
   },
 
   h3: {
-    color: darkTheme.colors.gray600,
+    color: darkTheme.colors.grayIcon,
     fontSize: '1.8rem',
     fontFamily: 'Roboto',
     fontWeight: '100',

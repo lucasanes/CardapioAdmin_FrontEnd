@@ -5,12 +5,13 @@ export const Container = styled('div', {
   height: '60px',
   position: 'absolute',
   top: 0,
-  background: darkTheme.colors.pallet,
+  background: darkTheme.colors.graySideBar,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '0 3rem',
   gap: '5rem',
+  zIndex: 1,
 
   "@sm": {
     gap: '3rem'
@@ -25,8 +26,8 @@ export const Intro = styled('div', {
   gap: '1rem',
 
   h1: {
-    color: '#fff',
-    fontSize: '2rem',
+    color: darkTheme.colors.midContrast,
+    fontSize: '1.8rem',
     fontFamily: 'Roboto',
   }
 
@@ -37,7 +38,7 @@ export const Buttons = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '3rem',
+  gap: '5rem',
 
   '@md': {
     position: 'absolute',
@@ -47,55 +48,30 @@ export const Buttons = styled('div', {
 
 });
 
-export const DropdownDiv = styled('div', {
-
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  gap: '1rem',
-  padding: '0 .5rem',
-
-  img: {
-    width: '35px',
-    height: '35px',
-    borderRadius: '100%',
-    objectFit: 'cover',
-    transition: '.2s',
-
-    '@md': {
-      width: '45px',
-      height: '45px'
-    }
-  },
-
-});
-
 export const Button = styled('button', {
 
   background: 'none',
+  padding: '1rem',
   border: 'none',
-  color: '#fff',
+  color: darkTheme.colors.midContrast,
   fontSize: '1.6rem',
   fontFamily: 'Roboto',
   fontWeight: 700,
-  borderBottom: '2px solid transparent',
   transition: '.2s',
-  paddingBottom: '.2rem',
 
   '@md': {
-    fontSize: '2rem'
+    fontSize: '1.8rem'
+  },
+
+  '&:hover': {
+    color: darkTheme.colors.pallet2
   },
 
   variants: {
     active: {
       true: {
-        borderBottom: '2px solid #fff',
+        color: darkTheme.colors.pallet2,
         cursor: 'default'
-      },
-      false: {
-        '&:hover': {
-          borderBottom: '2px solid #bdbdbdff',
-        },
       }
     }
   }

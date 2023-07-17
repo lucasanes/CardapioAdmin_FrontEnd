@@ -24,7 +24,7 @@ export const Card = styled('div', {
   width: '100%',
   minWidth: '300px',
   maxWidth: '450px',
-  background: darkTheme.colors.gray200,
+  background: darkTheme.colors.grayNoAuth,
   borderRadius: '1rem',
   padding: '3rem',
   display: 'flex',

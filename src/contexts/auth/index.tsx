@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { api } from "../../services/api.js";
-import { toast } from "react-toastify";
 import { AuthContextProps, DataProps } from "./types.js";
 
 const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -18,15 +17,17 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       const dadosUser = {
         username: response.data.user.username,
         email: response.data.user.email,
-        restaurante: response.data.user.restaurantes[0].nome
+      }
+
+      const dadosRestaurante = {
+        name: response.data.restaurante.nome,
+        img: response.data.restaurante.imagem
       }
 
       api.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`;
-      setData({ user: dadosUser, token: response.data.token });
+      setData({ user: dadosUser, restaurante: dadosRestaurante, token: response.data.token });
 
       localStorage.setItem("@cardapiosadmin:token", response.data.token);
-
-      toast.success('Sucesso ao fazer login!')
 
     } catch (e: any) {
       setValidateError({ error: 'senha', msg: e.response.data.msg })
@@ -40,7 +41,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
     window.location.replace('/')
 
-    setData({ user: null, token: null })
+    setData({ user: null, restaurante: null, token: null })
 
   }
 
@@ -59,11 +60,15 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
           const dadosUser = {
             username: response.data.user.username,
             email: response.data.user.email,
-            restaurante: response.data.user.restaurantes[0].nome
+          }
+
+          const dadosRestaurante = {
+            name: response.data.restaurante.nome,
+            img: response.data.restaurante.imagem
           }
 
           api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          setData({ user: dadosUser, token: response.data.token });
+          setData({ user: dadosUser, restaurante: dadosRestaurante, token: response.data.token });
 
         } catch {
           signOut()
@@ -73,7 +78,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
       fetchData()
     } else {
-      setData({ user: null, token: null })
+      setData({ user: null, restaurante: null, token: null })
     }
   }, []);
 
@@ -83,6 +88,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
         signIn,
         signOut,
         user: data?.user,
+        restaurante: data?.restaurante,
         token: data?.token
       }}
     >

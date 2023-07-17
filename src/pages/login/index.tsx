@@ -45,7 +45,7 @@ export function Login({ }) {
     <form onSubmit={handleLogin}>
       <Container>
 
-        <ToggleTheme style={{ transform: 'scale(1.5)', position: 'absolute', top: 0, left: '3.5rem' }} />
+        <ToggleTheme style={{ position: 'absolute', top: 0, left: '1.5rem' }} />
 
         <Card>
           <div className='inputs'>

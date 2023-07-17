@@ -16,8 +16,8 @@ export function ToggleTheme({ ...rest }) {
     <Container {...rest}>
       <Input defaultChecked={localStorage.getItem("@cardapiosadmin:theme") == 'dark'} type="checkbox" id="darkmode-toggle" onChange={handleToggle} />
       <Label checked={theme == 'dark'} htmlFor="darkmode-toggle">
-        <PiSunHorizonLight color={theme == 'light' ? "#fff" : '#7e7e7e'} size={16} version='1.1' className='sun' />
-        <RxMoon color={theme == 'dark' ? "#fff" : '#7e7e7e'} size={14} version='1.1' className='moon' />
+        <PiSunHorizonLight color={theme == 'light' ? "#fff" : '#7e7e7e'} size={24} version='1.1' className='sun' />
+        <RxMoon color={theme == 'dark' ? "#fff" : '#7e7e7e'} size={22} version='1.1' className='moon' />
       </Label>
     </Container>
   );

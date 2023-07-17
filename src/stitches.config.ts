@@ -4,16 +4,18 @@ export const { styled, css, keyframes, createTheme } = createStitches({
     theme: {
         colors: {
             hiContrast: 'hsl(206,10%,5%)',
+            midContrast: 'hsl(0, 0%, 44%)',
             loContrast: 'hsl(206,10%,85%)',
 
-            gray100: 'hsl(206,10%,75%)',
-            gray200: 'hsl(206,10%,70%)',
-            gray300: 'hsl(206,10%,65%)',
-            gray400: 'hsl(206,10%,55%)',
-            gray500: 'hsl(206,10%,45%)',
-            gray600: 'hsl(206,10%,35%)',
+            grayNoAuth: 'hsl(206,10%,70%)',
 
-            pallet: '#00748fff',
+            grayBody: 'hsl(224, 54%, 93%)',
+            graySideBar: 'hsl(0, 0%, 100%)',
+
+            grayIcon: 'hsl(206,10%,35%)',
+
+            pallet: 'hsl(191, 100%, 30%)',
+            pallet2: 'hsl(191, 100%, 40%)',
 
         },
         animations: {
@@ -32,16 +34,18 @@ export const { styled, css, keyframes, createTheme } = createStitches({
 export const darkTheme = createTheme({
     colors: {
         hiContrast: 'hsl(206,2%,93%)',
+        midContrast: 'hsl(0, 0%, 80%)',
         loContrast: 'hsl(206,8%,8%)',
 
-        gray100: 'hsl(206,7%,10%)',
-        gray200: 'hsl(206,7%,15%)',
-        gray300: 'hsl(206,7%,25%)',
-        gray400: 'hsl(206,7%,35%)',
-        gray500: 'hsl(206,7%,45%)',
-        gray600: 'hsl(206,7%,65%)',
+        grayNoAuth: 'hsl(206,7%,15%)',
 
-        pallet: '#007b80ff',
+        grayBody: 'hsl(200, 6%, 10%)',
+        graySideBar: 'hsl(210, 3%, 15%)',
+
+        grayIcon: 'hsl(206,7%,65%)',
+
+        pallet: 'hsl(182, 100%, 25%)',
+        pallet2: 'hsl(182, 100%, 25%)',
 
     },
 

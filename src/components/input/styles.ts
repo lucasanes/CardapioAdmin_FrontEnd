@@ -35,7 +35,7 @@ export const ContainerInput = styled('div', {
 export const Icon = styled('div', {
 
   position: 'absolute',
-  color: darkTheme.colors.gray600,
+  color: darkTheme.colors.grayIcon,
   top: '1.25rem',
   left: 10,
   display: 'flex',
@@ -62,7 +62,7 @@ export const InputB = styled('input', {
   color: darkTheme.colors.hiContrast,
 
   "&::placeholder": {
-    color: darkTheme.colors.gray600
+    color: darkTheme.colors.grayIcon
   }
 
 })

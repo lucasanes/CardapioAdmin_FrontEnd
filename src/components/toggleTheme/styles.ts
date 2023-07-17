@@ -1,7 +1,10 @@
-import { styled } from '../../stitches.config';
+import { darkTheme, styled } from '../../stitches.config';
 
 export const Container = styled('div', {
 
+  width: '90px',
+  height: '45px',
+  zIndex: 1
 
 })
 
@@ -15,20 +18,20 @@ export const Input = styled('input', {
 
 export const Label = styled('label', {
 
-  width: '60px',
-  height: '30px',
+  width: '90px',
+  height: '45px',
   position: 'relative',
   display: 'block',
-  background: '#ebebeb',
+  background: darkTheme.colors.grayBody,
   borderRadius: '200px',
-  boxShadow: 'inset 0px 5px 15px rgba(0,0,0,0.4), inset 0px -5px 15px rgba(255,255,255,0.4)',
+  boxShadow: 'inset 0px 5px 20px rgba(0,0,0,0.4), inset 0px -5px 20px rgba(255,255,255,0.5)',
   cursor: 'pointer',
   transition: '0.3s',
 
   '&:after': {
     content: "",
-    width: '20px',
-    height: '20px',
+    width: '35px',
+    height: '35px',
     position: 'absolute',
     top: '5px',
     left: '5px',
@@ -39,7 +42,7 @@ export const Label = styled('label', {
   },
 
   '&:active:after': {
-    width: '30px',
+    width: '45px',
   },
 
   svg: {
@@ -48,24 +51,23 @@ export const Label = styled('label', {
   },
 
   'svg.sun': {
-    left: '7px',
+    left: '10.5px',
     transition: '0.3s',
-    top: '7px',
+    top: '10.25px',
   },
 
   'svg.moon': {
-    left: '38.5px',
+    left: '56.75px',
     transition: '0.3s',
-    top: '8px',
+    top: '12px',
   },
 
   variants: {
     checked: {
       true: {
-        background: '#242424',
 
         '&:after': {
-          left: '55px',
+          left: '85px',
           transform: 'translateX(-100%)',
           background: 'linear-gradient(180deg,#777,#3a3a3a)',
         },
