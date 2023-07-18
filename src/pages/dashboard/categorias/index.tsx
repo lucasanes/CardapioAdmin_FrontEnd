@@ -1,3 +1,4 @@
+import { Categoria } from './categoria';
 import { Container } from './styles'
 
 interface Categorias {
@@ -10,7 +11,7 @@ interface Categorias {
 export function Categorias({ data }: { data: Array<Categorias> }) {
   return (
     <Container>
-      {data.map(categoria => categoria.nome)}
+      {data.length > 0 && data.map(categoria => <Categoria key={categoria.id} data={categoria} />)}
     </Container>
   );
 }

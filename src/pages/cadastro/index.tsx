@@ -3,13 +3,14 @@ import { Button, Card, Container } from './styles'
 import { useEffect, useState } from 'react'
 import { MdEmail } from 'react-icons/md'
 import { BiSolidLock, BiSolidLockOpen } from 'react-icons/bi'
-import { FaUserAlt } from 'react-icons/fa'
+import { FaUserAlt, FaUserCircle } from 'react-icons/fa'
 import { IoRestaurantSharp } from 'react-icons/io5'
 import Validator from '../../services/validator';
 import { api } from '../../services/api';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { InputImg } from '../../components/inputImg';
 
 export function Cadastro({ }) {
 
@@ -20,6 +21,7 @@ export function Cadastro({ }) {
   const [senha, setSenha] = useState('')
   const [senhaConfirmada, setSenhaConfirmada] = useState('')
   const [nomeRestaurante, setNomeRestaurante] = useState('')
+  const [imagem, setImagem] = useState('')
   const [codigo, setCodigo] = useState('')
 
   const [validateError, setValidateError] = useState({ error: '', msg: '' })
@@ -89,6 +91,7 @@ export function Cadastro({ }) {
         senha,
         senhaConfirmada,
         nomeRestaurante,
+        imagem,
         created_at: new Date().toLocaleString(),
         codigo
       })
@@ -118,6 +121,10 @@ export function Cadastro({ }) {
               erro={validateError.error == 'username' ? validateError.msg : ''} autoComplete='off' disabled={!ready}>
               <FaUserAlt size={16} />
             </Input>
+
+            <InputImg label='Foto' valor={imagem} setValor={setImagem} marginBottom={3} autoComplete='off' disabled={!ready}>
+              <FaUserCircle size={18} />
+            </InputImg>
 
             <Input name='email' label='Email' valor={email} setValor={setEmail} marginBottom={3}
               erro={validateError.error == 'email' ? validateError.msg : ''} autoComplete='off' disabled={!ready}>

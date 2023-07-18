@@ -15,7 +15,7 @@ interface Produtos {
 export function Produtos({ data }: { data: Array<Produtos> }) {
   return (
     <Container>
-      {data.map(produto => produto.categoriaId)}
+      {data.length > 0 && data.map(produto => produto.categoriaId)}
     </Container>
   );
 }

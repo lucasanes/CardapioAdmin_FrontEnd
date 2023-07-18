@@ -9,12 +9,13 @@ export const Container = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0 3rem',
+  padding: '0 1rem',
   gap: '5rem',
   zIndex: 1,
 
   "@sm": {
-    gap: '3rem'
+    gap: '3rem',
+    padding: '0 3rem',
   }
 });
 
@@ -38,7 +39,11 @@ export const Buttons = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '5rem',
+  gap: '0rem',
+
+  '@sm': {
+    gap: '5rem'
+  },
 
   '@md': {
     position: 'absolute',
