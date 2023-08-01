@@ -38,4 +38,24 @@ export default class Validator {
 
   }
 
+  imagem(value: string, type: string) {
+
+    if (value.length < 1) {
+      return `${type} precisa ter uma imagem.`
+    }
+
+    return null
+
+  }
+
+  nomeCategoria(value: string) {
+
+    if (value.length < 1) {
+      return 'Sua categoria precisa ter um nome.'
+    }
+
+    return null
+
+  }
+
 }

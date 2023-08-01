@@ -23,7 +23,7 @@ export function Input({ name, label, type = 'text', valor, setValor, children, e
       <ContainerInput active={active}>
         <Icon active={active}>{children}</Icon>
         <InputB
-          name={name} type={type == 'password' && showPass ? 'text' : type} placeholder={label}
+          name={name} defaultValue={valor} type={type == 'password' && showPass ? 'text' : type} placeholder={label}
           onFocus={() => setActive(true)} onBlur={() => setActive(false)}
           onChange={(e) => setValor(e.target.value)} {...rest}
         />

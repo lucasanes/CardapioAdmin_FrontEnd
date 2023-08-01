@@ -4,7 +4,7 @@ import { darkTheme } from "../../stitches.config.js";
 
 const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);
 
-function ThemeProvider({ children }: {children: React.ReactNode}) {
+function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const [theme, setTheme] = useState(localStorage.getItem('@cardapiosadmin:theme') || 'light');
 

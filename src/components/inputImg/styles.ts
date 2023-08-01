@@ -3,14 +3,12 @@ import { darkTheme, styled } from '../../stitches.config';
 export const Container = styled('div', {
 
   display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'flex-start',
-  gap: '2rem',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '1rem',
 
   '.span': {
-    color: 'Crimson',
-    marginTop: '-1rem',
-    marginLeft: '1rem'
+    color: '#ff0000',
   }
 
 })
@@ -24,10 +22,21 @@ export const ContainerInput = styled('div', {
   border: '2px solid transparent',
   transition: 'ease-out .2s',
 
+  '.separador': {
+    height: '47px',
+    margin: '-2px 0',
+    width: '3px',
+    background: darkTheme.colors.grayNoAuth
+  },
+
   variants: {
     active: {
       true: {
-        border: `2px solid ${darkTheme.colors.pallet}`
+        border: `2px solid ${darkTheme.colors.pallet}`,
+
+        '.separador': {
+          background: darkTheme.colors.pallet
+        }
       }
     }
   }
@@ -55,11 +64,10 @@ export const InputB = styled('label', {
   justifyContent: 'center',
   position: 'relative',
   flexDirection: 'column',
-  transition: 'background .5s',
-  borderLeft: '1px solid #fff',
+  transition: 'background .4s',
   borderTopRightRadius: '5px',
   borderBottomRightRadius: '5px',
-  margin: '-2px',
+  margin: '-2px -2px -2px 0',
 
   '&:hover': {
     cursor: 'pointer',
@@ -74,11 +82,6 @@ export const InputB = styled('label', {
         }
       }
     },
-    active: {
-      true: {
-        margin: 0
-      }
-    }
   }
 })
 
@@ -88,6 +91,7 @@ export const SpanMsg = styled('span', {
   bottom: '8px',
   color: '#ffffff90',
   fontSize: '1.4rem',
+  textTransform: 'capitalize',
 
   variants: {
     msg: {

@@ -45,9 +45,15 @@ export function Cadastro({ }) {
     const validateEmail = validator.email(email)
     const validateSenha = validator.senha(senha)
     const validateSenhaConfirm = validator.senha(senhaConfirmada)
+    const validateImagem = validator.imagem(imagem, 'Seu usuário')
 
     if (validateUsername != null) {
       setValidateError({ error: 'username', msg: validateUsername })
+      return
+    }
+
+    if (validateImagem != null) {
+      setValidateError({ error: 'imagem', msg: validateImagem })
       return
     }
 
@@ -122,7 +128,8 @@ export function Cadastro({ }) {
               <FaUserAlt size={16} />
             </Input>
 
-            <InputImg label='Foto' valor={imagem} setValor={setImagem} marginBottom={3} autoComplete='off' disabled={!ready}>
+            <InputImg label='Foto' valor={imagem} setValor={setImagem} marginBottom={3} autoComplete='off' disabled={!ready}
+              erro={validateError.error == 'imagem' ? validateError.msg : ''}>
               <FaUserCircle size={18} />
             </InputImg>
 

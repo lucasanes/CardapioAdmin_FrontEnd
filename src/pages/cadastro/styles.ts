@@ -6,8 +6,8 @@ export const Container = styled('div', {
   height: '100vh',
   background: darkTheme.colors.loContrast,
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'center',
+  overflowY: 'auto',
   padding: '4rem',
 
 });
@@ -17,6 +17,7 @@ export const Card = styled('div', {
   minWidth: '300px',
   width: '100%',
   maxWidth: '400px',
+  height: 'fit-content',
   position: 'relative',
   background: darkTheme.colors.grayNoAuth,
   borderRadius: '1rem',
@@ -24,6 +25,7 @@ export const Card = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
+  margin: 'auto',
 
   '.inputs': {
     display: 'flex',

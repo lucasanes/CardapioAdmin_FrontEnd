@@ -29,7 +29,8 @@ export function Dashboard() {
     precosAdd: []
   }
 
-  const [data, setData] = useState<{ categorias: Array<Categorias>, produtos: Array<Produtos> }>({ categorias: [], produtos: [] })
+  const [produtos, setProdutos] = useState<Array<Produtos>>([])
+  const [categorias, setCategorias] = useState<Array<Categorias>>([])
 
   const { token } = useAuth()
 
@@ -37,7 +38,8 @@ export function Dashboard() {
 
     async function fetchData() {
       const response = await api.get(`/etc/restaurante/${token}`)
-      setData({ categorias: response.data.categorias, produtos: response.data.categorias.map((categoria: { produtos: [] }) => categoria.produtos)[0] })
+      setCategorias(response.data.categorias)
+      setProdutos(response.data.categorias.map((categoria: { produtos: [] }) => categoria.produtos)[0])
     }
 
     fetchData()
@@ -51,11 +53,11 @@ export function Dashboard() {
       <TopMenu />
 
       <Slider>
-        <Categorias data={data.categorias} />
+        <Categorias data={categorias} setData={setCategorias} />
       </Slider>
 
       <Slider>
-        <Produtos data={data.produtos} />
+        <Produtos data={produtos} setData={setProdutos} />
       </Slider>
 
 

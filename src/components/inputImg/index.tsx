@@ -1,28 +1,31 @@
 import { InputHTMLAttributes, useEffect, useState } from "react"
 import { Container, ContainerInput, Icon, InputA, InputB, Progress, ProgressBar, SpanMsg } from "./styles"
 import { api } from "../../services/api";
+import { useAuth } from "../../contexts/auth";
+import { toast } from "react-toastify";
 
 interface InputImgProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string,
   valor: string,
   setValor: React.Dispatch<React.SetStateAction<string>>,
-  marginBottom?: number,
+  marginBottom: number,
+  erro: string,
   children: React.ReactNode
 }
 
-export function InputImg({ label, setValor, valor, children, marginBottom, ...rest }: InputImgProps) {
+export function InputImg({ label, setValor, valor, children, marginBottom = 0, erro, ...rest }: InputImgProps) {
 
-  const [erro, seterro] = useState('')
   const [active, setActive] = useState(false)
   const [file, setFile] = useState<File | undefined>(undefined)
   const [msg, setMsg] = useState('Enviar Foto')
   const [progress, setProgress] = useState<number>(0)
 
+  const { token } = useAuth()
+
   useEffect(() => {
     if (valor == null || valor.toString().length == 0) {
       setMsg('Enviar foto')
       setFile(undefined)
-      seterro('')
     }
   }, [valor])
 
@@ -33,7 +36,6 @@ export function InputImg({ label, setValor, valor, children, marginBottom, ...re
 
       if (file) {
         data.append('imagem', file);
-        data.append('token', 'noauth')
       }
 
       const response = await api.post('/etc/upload', data, {
@@ -43,16 +45,18 @@ export function InputImg({ label, setValor, valor, children, marginBottom, ...re
             setProgress((ProgressEvent.loaded / ProgressEvent.total) * 100)
           }
         },
+        headers: {
+          Authorization: token ? token : 'noauth'
+        }
       })
 
       setMsg('Enviado!')
       setValor(response.data)
-      seterro('')
 
     } catch (e: any) {
       setProgress(0)
       setMsg('Erro!')
-      seterro(e.data.msg)
+      toast.error(e.data.msg)
     }
 
   }
@@ -62,14 +66,13 @@ export function InputImg({ label, setValor, valor, children, marginBottom, ...re
     if (file != undefined) {
       handleFileUpload()
     } else {
-      setMsg('Enviar foto!')
-      seterro('')
+      setMsg('Enviar foto')
     }
 
   }, [file])
 
   return (
-    <Container style={{ marginBottom: marginBottom ? `${marginBottom}rem` : 0 }}>
+    <Container style={{ marginBottom: erro ? (marginBottom / marginBottom) + 'rem' : marginBottom + 'rem' }}>
 
       <ContainerInput active={active}>
         <Icon active={active}>{children}</Icon>
@@ -84,7 +87,8 @@ export function InputImg({ label, setValor, valor, children, marginBottom, ...re
             setActive(false)
           }}
         />
-        <InputB active={active} progresso={!file ? 'ni' : undefined}>
+        <div className="separador"></div>
+        <InputB progresso={!file ? 'ni' : undefined}>
           <SpanMsg className="msg" msg={msg == 'Erro!' ? 'erro' : msg == 'Enviado!' ? 'enviado' : undefined}>{msg}</SpanMsg>
           <ProgressBar progresso={!file ? 'ni' : undefined}>
             <Progress style={{ width: `${progress}%` }} progresso={msg == 'Enviado!' ? 'f' : 'i'} />
@@ -92,7 +96,7 @@ export function InputImg({ label, setValor, valor, children, marginBottom, ...re
           <input type="file" style={{ display: 'none' }} onChange={(e: any) => setFile(e.target.files[0])} />
         </InputB>
       </ContainerInput>
-      {erro && <span className="span">{erro}</span>}
+      <span className="span" style={{ display: erro ? 'initial' : 'none' }}>{erro}</span>
     </Container>
   )
 }

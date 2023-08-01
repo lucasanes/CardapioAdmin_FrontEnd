@@ -7,14 +7,14 @@ export const Container = styled('div', {
   background: darkTheme.colors.loContrast,
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
   justifyContent: 'center',
-  padding: '4rem',
 
   form: {
     display: 'flex',
-    alignItems: 'center',
     justifyContent: 'center',
+    margin: 'auto',
+    padding: '4rem',
+    overflowY: 'auto',
   }
 
 });
@@ -24,6 +24,8 @@ export const Card = styled('div', {
   width: '100%',
   minWidth: '300px',
   maxWidth: '450px',
+  height: 'fit-content',
+  margin: 'auto',
   background: darkTheme.colors.grayNoAuth,
   borderRadius: '1rem',
   padding: '3rem',

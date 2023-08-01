@@ -12,10 +12,10 @@ interface Produtos {
   precosAdd: []
 }
 
-export function Produtos({ data }: { data: Array<Produtos> }) {
+export function Produtos({ data, setData }: { data: Array<Produtos>, setData: React.Dispatch<React.SetStateAction<Produtos[]>> }) {
   return (
     <Container>
-      {data.length > 0 && data.map(produto => produto.categoriaId)}
+      {data && data.length > 0 && data.map(produto => produto.categoriaId)}
     </Container>
   );
 }

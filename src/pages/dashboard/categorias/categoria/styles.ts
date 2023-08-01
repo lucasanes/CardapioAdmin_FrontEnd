@@ -1,8 +1,7 @@
 import { darkTheme, styled } from '../../../../stitches.config';
 
 export const Container = styled('div', {
-  minWidth: '300px',
-  maxWidth: '500px',
+  width: '300px',
   height: 'fit-content',
   padding: '1rem',
   border: `2px solid ${darkTheme.colors.hiContrast}`,
@@ -22,9 +21,24 @@ export const Container = styled('div', {
   },
 
   img: {
-    width: '300px',
-    height: '300px',
+    width: '',
+    height: '100%',
     objectFit: 'cover',
     margin: '1.5rem 1rem',
+  }
+});
+
+export const Header = styled('div', {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '0 .5rem',
+
+  div: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '1rem'
   }
 });

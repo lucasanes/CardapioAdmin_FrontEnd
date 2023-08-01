@@ -36,7 +36,7 @@ export const Icon = styled('div', {
 
   position: 'absolute',
   color: darkTheme.colors.grayIcon,
-  top: '1.25rem',
+  top: '1.15rem',
   left: 10,
   display: 'flex',
   alignItems: 'center',
