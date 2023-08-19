@@ -103,6 +103,7 @@ export const Bar = styled('div', {
   borderRadius: '1.5rem',
   gap: '2rem',
   overflow: 'hidden',
+  position: 'relative',
 
   '.cut': {
     width: '100%',

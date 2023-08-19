@@ -55,7 +55,7 @@ export function VerticalMenu({ setBody }: { setBody: React.Dispatch<React.SetSta
             <S.Button onClick={() => setBody(1)}><BsBoxSeam size={19} />{!isLow && 'Produtos'}</S.Button>
           </S.Buttons>
         </S.CategoriasMenu>
-        <ToggleTheme style={{ position: 'absolute', bottom: 45, transform: 'scale(0.8)' }} />
+        <ToggleTheme style={{ position: 'absolute', bottom: 30, transform: 'scale(0.8)' }} />
       </S.Bar>
     </S.Container>
   );
