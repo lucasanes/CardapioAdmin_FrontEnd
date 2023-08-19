@@ -29,6 +29,8 @@ export function Dashboard() {
 
   useEffect(() => {
 
+    console.log(modalCreateProdutoIsOpen)
+
     if (innerWidth < 500) {
       setIsLow(2)
     } else if (innerWidth < 950) {
