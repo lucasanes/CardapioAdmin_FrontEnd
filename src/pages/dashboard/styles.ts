@@ -6,7 +6,8 @@ export const Container = styled('div', {
   height: '100vh',
   background: darkTheme.colors.body,
   display: 'flex',
-  overflowX: 'hidden'
+  overflowX: 'hidden',
+  position: 'fixed'
 
 });
 
