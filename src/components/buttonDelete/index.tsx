@@ -4,11 +4,10 @@ import { Modal } from '../modal';
 import { useState } from 'react';
 
 type ButtonDeleteProps = {
-  size?: number,
   handleExecute: () => void
 }
 
-export function ButtonDelete({ size = 20, handleExecute }: ButtonDeleteProps) {
+export function ButtonDelete({ handleExecute }: ButtonDeleteProps) {
 
   const [open, setOpen] = useState(false)
 
