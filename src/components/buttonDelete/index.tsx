@@ -1,4 +1,3 @@
-import { FiTrash } from 'react-icons/fi';
 import { Container } from './styles'
 import { ModalDeleteConfirm } from '../modalDeleteConfirm';
 import { Modal } from '../modal';
@@ -20,9 +19,7 @@ export function ButtonDelete({ size = 20, handleExecute }: ButtonDeleteProps) {
         <ModalDeleteConfirm handleExecute={handleExecute} setClose={() => setOpen(false)} />
       </Modal>
 
-      <button type='button' onClick={() => setOpen(true)}>
-        <FiTrash size={size} />
-      </button>
+      <button type='button' onClick={() => setOpen(true)}>Excluir</button>
     </Container>
   );
 }

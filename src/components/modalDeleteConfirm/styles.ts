@@ -14,10 +14,6 @@ export const Container = styled('div', {
     borderColor: '#ffffff90'
   },
 
-  '@md': {
-    width: '45rem'
-  },
-
   h2: {
     fontSize: '2rem',
     lineHeight: '3rem',

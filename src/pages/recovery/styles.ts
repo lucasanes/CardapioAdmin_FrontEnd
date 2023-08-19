@@ -4,7 +4,7 @@ export const Container = styled('div', {
 
   width: '100%',
   height: '100vh',
-  background: darkTheme.colors.loContrast,
+  background: darkTheme.colors.body,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -26,7 +26,7 @@ export const Card = styled('div', {
   maxWidth: '450px',
   height: 'fit-content',
   margin: 'auto',
-  background: darkTheme.colors.grayNoAuth,
+  background: darkTheme.colors.content,
   borderRadius: '1rem',
   padding: '3rem',
   display: 'flex',

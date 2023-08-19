@@ -22,7 +22,7 @@ export const Label = styled('label', {
   height: '45px',
   position: 'relative',
   display: 'block',
-  background: darkTheme.colors.grayBody,
+  background: darkTheme.colors.body,
   borderRadius: '200px',
   boxShadow: 'inset 0px 5px 20px rgba(0,0,0,0.4), inset 0px -5px 20px rgba(255,255,255,0.5)',
   cursor: 'pointer',

@@ -3,6 +3,7 @@ import { Container, ContainerInput, Icon, InputA, InputB, Progress, ProgressBar,
 import { api } from "../../services/api";
 import { useAuth } from "../../contexts/auth";
 import { toast } from "react-toastify";
+import { useTheme } from "../../contexts/theme";
 
 interface InputImgProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string,
@@ -19,6 +20,8 @@ export function InputImg({ label, setValor, valor, children, marginBottom = 0, e
   const [file, setFile] = useState<File | undefined>(undefined)
   const [msg, setMsg] = useState('Enviar Foto')
   const [progress, setProgress] = useState<number>(0)
+
+  const { theme } = useTheme()
 
   const { token } = useAuth()
 
@@ -88,7 +91,7 @@ export function InputImg({ label, setValor, valor, children, marginBottom = 0, e
           }}
         />
         <div className="separador"></div>
-        <InputB progresso={!file ? 'ni' : undefined}>
+        <InputB dark={theme == 'dark'} progresso={!file ? 'ni' : undefined}>
           <SpanMsg className="msg" msg={msg == 'Erro!' ? 'erro' : msg == 'Enviado!' ? 'enviado' : undefined}>{msg}</SpanMsg>
           <ProgressBar progresso={!file ? 'ni' : undefined}>
             <Progress style={{ width: `${progress}%` }} progresso={msg == 'Enviado!' ? 'f' : 'i'} />

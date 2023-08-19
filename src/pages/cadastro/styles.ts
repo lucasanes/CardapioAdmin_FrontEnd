@@ -4,7 +4,7 @@ export const Container = styled('div', {
 
   width: '100%',
   height: '100vh',
-  background: darkTheme.colors.loContrast,
+  background: darkTheme.colors.body,
   display: 'flex',
   justifyContent: 'center',
   overflowY: 'auto',
@@ -19,7 +19,7 @@ export const Card = styled('div', {
   maxWidth: '400px',
   height: 'fit-content',
   position: 'relative',
-  background: darkTheme.colors.grayNoAuth,
+  background: darkTheme.colors.content,
   borderRadius: '1rem',
   padding: '7rem 3rem 3rem 3rem',
   display: 'flex',

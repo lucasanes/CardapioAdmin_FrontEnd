@@ -1,22 +1,21 @@
-import { styled } from '../../stitches.config';
+import { darkTheme, styled } from '../../stitches.config';
 
 export const Container = styled('div', {
-
+  width: '100%',
   button: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: '100%',
     background: 'none',
-    border: '1px solid transparent',
+    border: '1px solid ' + darkTheme.colors.pallet,
     borderRadius: '5px',
-    padding: '.25rem',
-    color: '#ff0000',
-    transition: '.2s',
-
+    padding: '.4rem',
+    color: darkTheme.colors.pallet,
+    transition: '.5s'
   },
 
   'button:hover': {
-    border: '1px solid #ff0000'
+    border: '1px solid transparent',
+    background: darkTheme.colors.pallet,
+    color: darkTheme.colors.loContrast
   }
 
 });

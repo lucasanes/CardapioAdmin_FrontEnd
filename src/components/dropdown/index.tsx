@@ -1,51 +1,30 @@
-import { Button, ButtonLink, Container, Menu, Span } from './styles';
-import { IoIosArrowDown } from 'react-icons/io'
-import { useState, useEffect } from 'react';
-import { FiUser, FiUserX } from 'react-icons/fi'
+import { Button, Container, Menu, Span } from './styles';
+import { useState } from 'react';
+import { CategoriasProps } from '../../pages/dashboard/types';
+import { IoIosArrowDown } from 'react-icons/io';
 import { darkTheme } from '../../stitches.config';
-import { useAuth } from '../../contexts/auth';
 
-export function Dropdown({ img, nome }: { nome: string | undefined, img: string | undefined }) {
+export function Dropdown({ data }: { data: CategoriasProps }) {
 
   const [open, setOpen] = useState(false)
-  const [cell, setCell] = useState(false)
-
-  const { signOut } = useAuth()
-
-  useEffect(() => {
-    if (innerWidth < 800) {
-      setCell(true)
-    } else {
-      setCell(false)
-    }
-  }, [])
-
-  window.addEventListener('resize', () => {
-    if (innerWidth < 800) {
-      setCell(true)
-    } else {
-      setCell(false)
-    }
-  })
 
   return (
     <Container>
-      <Span open={open} onClick={() => setOpen(!open)} onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} >
-        <img src={img} />
-        {!cell && nome}
+      <Span open={open}
+        onClick={() => setOpen(!open)}
+      >
+        {data.nome}
         <div className='icon'>
           <IoIosArrowDown size={20} color={darkTheme.colors.midContrast} />
         </div>
       </Span>
 
-      {open && <Menu onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)} >
-        <li>
-          <ButtonLink to={'/conta'} style={{ gap: '1.3rem' }}><FiUser size={20} />Conta</ButtonLink>
-        </li>
-        <li className="menu-item">
-          <Button onClick={signOut} style={{ marginLeft: '.3rem' }}><FiUserX size={20} />Sair</Button>
-        </li>
-      </Menu>}
+      {open &&
+        <Menu
+        >
+          <Button>produto</Button>
+          {(data.produtos?.length > 0) && data.produtos.map(produto => <Button key={produto.id}>{produto.nome}</Button>)}
+        </Menu>}
     </Container>
   );
 }

@@ -2,6 +2,10 @@ export default class Validator {
 
   username(value: string) {
 
+    if (value.length == 0) {
+      return 'Campo não preenchido.'
+    }
+
     if (value.length < 3) {
       return 'Seu nome precisa ter no mínimo 3 dígitos.'
     }
@@ -16,6 +20,10 @@ export default class Validator {
 
   email(value: string) {
 
+    if (value.length == 0) {
+      return 'Campo não preenchido.'
+    }
+
     const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
     if (!emailRegex.test(value)) {
@@ -27,6 +35,10 @@ export default class Validator {
   }
 
   senha(value: string) {
+
+    if (value.length < 0) {
+      return 'Campo não preenchido.'
+    }
 
     const senhaRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9!@#$%*_&^-]{8,24})$/
 
@@ -51,7 +63,7 @@ export default class Validator {
   nomeCategoria(value: string) {
 
     if (value.length < 1) {
-      return 'Sua categoria precisa ter um nome.'
+      return 'Campo não preenchido.'
     }
 
     return null

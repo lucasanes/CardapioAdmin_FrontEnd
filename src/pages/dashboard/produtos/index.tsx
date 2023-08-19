@@ -1,21 +1,20 @@
-import { Container } from './styles'
+import { Produto } from '../produto';
+import { CategoriasProps } from '../types';
+import * as S from './styles'
 
-interface Produtos {
-  id: string,
-  nome: string,
-  descricao: string,
-  imagem: string,
-  created_at: string,
-  categoriaId: string,
-  preco: number,
-  nomesAdd: [],
-  precosAdd: []
-}
+export function Produtos({ data, setList }: { data: CategoriasProps, setList: React.Dispatch<React.SetStateAction<CategoriasProps[]>> }) {
 
-export function Produtos({ data }: { data: Array<Produtos>, setData: React.Dispatch<React.SetStateAction<Produtos[]>> }) {
-  return (
-    <Container>
-      {data && data.length > 0 && data.map(produto => produto.categoriaId)}
-    </Container>
-  );
+  return (<>
+    {data.produtos.length > 0 &&
+      <S.Container>
+        <S.Header>
+          <span>{data.nome}</span>
+        </S.Header>
+
+        <S.Body>
+          {data.produtos.map((produto) => <Produto key={produto.id} data={produto} setList={setList} />)}
+        </S.Body>
+      </S.Container>
+    }
+  </>);
 }

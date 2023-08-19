@@ -51,6 +51,8 @@ export const Content = styled(Dialog.Panel, {
   display: 'flex',
   margin: 'auto',
   animation: `${animation} .3s`,
+  borderRadius: '1rem',
+  boxShadow: '0px 0px 15px #aaaaaa',
 
   variants: {
     animation: {

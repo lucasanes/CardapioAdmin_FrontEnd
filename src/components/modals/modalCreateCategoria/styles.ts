@@ -2,7 +2,7 @@ import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('div', {
 
-  background: darkTheme.colors.grayNoAuth,
+  background: darkTheme.colors.modal,
   padding: '3rem 2rem',
   borderRadius: '1rem',
 
@@ -37,14 +37,16 @@ export const Button = styled('button', {
   width: '9rem',
   padding: '.7rem 0',
   background: 'none',
-  border: '2px solid ' + darkTheme.colors.pallet,
+  border: '1px solid ' + darkTheme.colors.pallet,
   borderRadius: '5px',
   color: darkTheme.colors.pallet,
-  fontWeight: 700,
+  fontWeight: 100,
   transition: '.3s',
 
   '&:hover': {
-    background: darkTheme.animations.buttonBackgroundHover
+    background: darkTheme.colors.pallet,
+    color: darkTheme.colors.loContrast,
+    border: '1px solid transparent'
   }
 
 });

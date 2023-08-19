@@ -6,7 +6,7 @@ const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextProps);
 
 function ThemeProvider({ children }: { children: React.ReactNode }) {
 
-  const [theme, setTheme] = useState(localStorage.getItem('@cardapiosadmin:theme') || 'light');
+  const [theme, setTheme] = useState(localStorage.getItem('@cardapiosadmin:theme') || 'dark');
 
   return (
     <ThemeContext.Provider

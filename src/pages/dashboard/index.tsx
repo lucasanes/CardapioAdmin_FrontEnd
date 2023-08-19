@@ -1,66 +1,135 @@
 import 'swiper/css';
-import { ToggleTheme } from '../../components/toggleTheme';
 import { useAuth } from '../../contexts/auth';
 import { api } from '../../services/api';
-import { Categorias } from './categorias';
-import { Produtos } from './produtos';
-import { Container, Slider } from './styles'
-import { TopMenu } from './topMenu';
+import * as S from './styles'
+import { VerticalMenu } from './verticalMenu';
 import { useEffect, useState } from 'react';
+import { CategoriasProps } from './types';
+import { Categoria } from './categoria';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { Search } from '../../components/search';
+import { Modal } from '../../components/modal';
+import { ModalCreateCategoria } from '../../components/modals/modalCreateCategoria';
+import { Produtos } from './produtos';
 
 export function Dashboard() {
 
-  interface Categorias {
-    id: string,
-    nome: string,
-    imagem: string,
-    created_at: string,
-  }
+  const [categorias, setCategorias] = useState<Array<CategoriasProps>>([])
+  const [categoriasMostradas, setCategoriasMostradas] = useState<Array<CategoriasProps>>([])
 
-  interface Produtos {
-    id: string,
-    nome: string,
-    descricao: string,
-    imagem: string,
-    created_at: string,
-    categoriaId: string,
-    preco: number,
-    nomesAdd: [],
-    precosAdd: []
-  }
+  const [body, setBody] = useState(0)
+  const [isLow, setIsLow] = useState(0)
 
-  const [produtos, setProdutos] = useState<Array<Produtos>>([])
-  const [categorias, setCategorias] = useState<Array<Categorias>>([])
+  const [modalCreateCategoriaIsOpen, setModalCreateCategoriaIsOpen] = useState(false)
+  const [modalCreateProdutoIsOpen, setModalCreateProdutoIsOpen] = useState(false)
+
+  const [search, setSearch] = useState<string>('')
 
   const { token } = useAuth()
 
   useEffect(() => {
 
+    if (innerWidth < 500) {
+      setIsLow(2)
+    } else if (innerWidth < 950) {
+      setIsLow(1)
+    } else {
+      setIsLow(0)
+    }
+
     async function fetchData() {
       const response = await api.get(`/etc/restaurante/${token}`)
       setCategorias(response.data.categorias)
-      setProdutos(response.data.categorias.map((categoria: { produtos: [] }) => categoria.produtos)[0])
+      setCategoriasMostradas(response.data.categorias)
     }
 
     fetchData()
 
   }, [])
 
+  useEffect(() => {
+
+    function replaceSpecialChars(str: string) {
+
+      str = str.replace(/[ÀÁÂÃÄÅ]/, "A");
+      str = str.replace(/[àáâãäå]/, "a");
+      str = str.replace(/[ÈÉÊË]/, "E");
+      str = str.replace(/[Ç]/, "C");
+      str = str.replace(/[ç]/, "c");
+
+      return str.replace(/[^a-z0-9]/gi, '');
+
+    }
+
+    if (body == 0) {
+      if (search != '') {
+        setCategoriasMostradas(categorias.filter(categoria => replaceSpecialChars(categoria.nome.toLowerCase()).includes(replaceSpecialChars(search.toLowerCase()))))
+      } else {
+        setCategoriasMostradas(categorias)
+      }
+    }
+
+    if (body == 1) {
+      if (search != '') {
+        const newData = categorias.map(categoria => {
+          const updateProdutos = categoria.produtos.filter(produto => replaceSpecialChars(produto.nome.toLowerCase()).includes(replaceSpecialChars(search.toLowerCase())))
+          return { ...categoria, produtos: updateProdutos }
+        })
+        setCategoriasMostradas(newData)
+      } else {
+        setCategoriasMostradas(categorias)
+      }
+    }
+
+  }, [search, categorias])
+
+  useEffect(() => {
+    setSearch('')
+  }, [body])
+
+  window.addEventListener('resize', () => {
+    if (innerWidth < 500) {
+      setIsLow(2)
+    } else if (innerWidth < 950) {
+      setIsLow(1)
+    } else {
+      setIsLow(0)
+    }
+  })
+
   return (
-    <Container grabCursor threshold={10}>
+    <S.Container>
 
-      <ToggleTheme style={{ position: 'absolute', bottom: 30, left: 15 }} />
-      <TopMenu />
+      <Modal isOpen={modalCreateCategoriaIsOpen} setOpen={setModalCreateCategoriaIsOpen}>
+        <ModalCreateCategoria setClose={() => setModalCreateCategoriaIsOpen(false)} setList={setCategorias} />
+      </Modal>
 
-      <Slider>
-        <Categorias data={categorias} setData={setCategorias} />
-      </Slider>
+      <VerticalMenu setBody={setBody} />
 
-      <Slider>
-        <Produtos data={produtos} setData={setProdutos} />
-      </Slider>
+      <S.Body>
+        <S.Top>
+          {isLow == 0 && <h1>{body == 0 ? 'Categorias' : 'Produtos'}</h1>}
+          <Search valor={search} setValor={setSearch} />
+          <S.Button onClick={() => {
+            if (body == 0) {
+              setModalCreateCategoriaIsOpen(true)
+            } else {
+              setModalCreateProdutoIsOpen(true)
+            }
+          }}><AiOutlinePlus size={20} />{(body == 0 && isLow != 2) ? 'Categoria' : (body == 1 && isLow != 2) && 'Produto'}</S.Button>
+        </S.Top>
+        {body == 0 &&
+          <S.Categorias>
+            {categoriasMostradas.length > 0 && categoriasMostradas.map(categoria => <Categoria setList={setCategorias} key={categoria.id} data={categoria} />)}
+          </S.Categorias>
+        }
+        {body == 1 &&
+          <S.Produtos>
+            {categoriasMostradas.length > 0 && categoriasMostradas.map(categoria => <Produtos setList={setCategorias} key={categoria.id} data={categoria} />)}
+          </S.Produtos>
+        }
+      </S.Body>
 
-
-    </Container>
+    </S.Container>
   );
 }

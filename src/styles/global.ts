@@ -13,14 +13,14 @@ export const GlobalStyles = globalCss({
     boxSizing: "border-box",
     fontSize: "1.6rem",
     '::-webkit-scrollbar': {
-      backgroundColor: '#373737',
+      backgroundColor: darkTheme.colors.scrollbar,
       width: '7px',
       position: 'fixed',
-      borderTopRightRadius: '5px',
-      borderBottomRightRadius: '5px'
+      borderTopLeftRadius: '5px',
+      borderBottomLeftRadius: '5px',
     },
     '::-webkit-scrollbar-thumb': {
-      backgroundColor: '#6b6b6b',
+      backgroundColor: darkTheme.colors.scrollbarThumb,
       borderRadius: '5px',
       position: 'fixed',
     },

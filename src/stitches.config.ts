@@ -3,19 +3,20 @@ import { createStitches } from "@stitches/react";
 export const { styled, css, keyframes, createTheme } = createStitches({
     theme: {
         colors: {
+            body: '#dce0ebff',
+            content: '#eceef0e3',
+            modal: '#f4f5f6e9',
+
             hiContrast: 'hsl(206,10%,5%)',
-            midContrast: 'hsl(0, 0%, 44%)',
-            loContrast: 'hsl(206,10%,85%)',
+            midContrast: 'hsl(0, 0%, 46%)',
+            loContrast: 'hsl(206,10%,95%)',
 
-            grayNoAuth: 'hsl(206,10%,70%)',
+            icons: 'hsl(206,10%,35%)',
 
-            grayBody: 'hsl(224, 54%, 93%)',
-            graySideBar: 'hsl(0, 0%, 100%)',
+            pallet: 'hsl(213, 58%, 38%)',
 
-            grayIcon: 'hsl(206,10%,35%)',
-
-            pallet: 'hsl(191, 100%, 30%)',
-            pallet2: 'hsl(191, 100%, 40%)',
+            scrollbar: 'hsl(0, 0%, 42%)',
+            scrollbarThumb: 'hsl(0, 0%, 62%)'
 
         },
         animations: {
@@ -25,28 +26,29 @@ export const { styled, css, keyframes, createTheme } = createStitches({
         }
     },
     media: {
-        sm: "(min-width: 500px)",
-        md: "(min-width: 800px)",
-        lg: "(min-width: 950px)",
-        xlg: "(min-width: 1200px)",
+        sm: "(max-width: 550px)",
+        md: "(max-width: 800px)",
+        lg: "(max-width: 1000px)",
+        xlg: "(max-width: 1200px)"
     }
 });
 
 export const darkTheme = createTheme({
     colors: {
+        body: 'hsl(200, 6%, 10%)',
+        content: 'hsl(210, 3%, 15%)',
+        modal: 'hsl(210, 3%, 12%)',
+
         hiContrast: 'hsl(206,2%,93%)',
         midContrast: 'hsl(0, 0%, 80%)',
         loContrast: 'hsl(206,8%,8%)',
 
-        grayNoAuth: 'hsl(206,7%,15%)',
+        icons: 'hsl(206,7%,65%)',
 
-        grayBody: 'hsl(200, 6%, 10%)',
-        graySideBar: 'hsl(210, 3%, 15%)',
+        pallet: 'hsl(213, 48%, 51%)',
 
-        grayIcon: 'hsl(206,7%,65%)',
-
-        pallet: 'hsl(182, 100%, 25%)',
-        pallet2: 'hsl(182, 100%, 25%)',
+        scrollbar: 'hsl(0, 0%, 22%)',
+        scrollbarThumb: 'hsl(0, 0%, 42%)'
 
     },
 

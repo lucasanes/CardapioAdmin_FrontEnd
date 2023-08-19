@@ -8,15 +8,9 @@ import { api } from '../../../services/api';
 import { useAuth } from '../../../contexts/auth';
 import { toast } from 'react-toastify';
 import Validator from '../../../services/validator';
+import { CategoriasProps } from '../../../pages/dashboard/types';
 
-interface Categorias {
-  id: string,
-  nome: string,
-  imagem: string,
-  created_at: string,
-}
-
-export function ModalCreateCategoria({ setList, setClose }: { setList: React.Dispatch<React.SetStateAction<Categorias[]>>, setClose: () => void }) {
+export function ModalCreateCategoria({ setList, setClose }: { setList: React.Dispatch<React.SetStateAction<CategoriasProps[]>>, setClose: () => void }) {
 
   const { token } = useAuth()
   const validator = new Validator()
@@ -52,6 +46,8 @@ export function ModalCreateCategoria({ setList, setClose }: { setList: React.Dis
         created_at: new Date().toLocaleString(),
 
       }, { headers: { Authorization: token } })
+
+      console.log(response.data)
 
       setList(rest => [...rest, response.data])
       setClose()

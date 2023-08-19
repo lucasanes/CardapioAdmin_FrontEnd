@@ -1,4 +1,4 @@
-import { darkTheme, styled } from '../../stitches.config';
+import { darkTheme, styled } from '../../stitches.config'
 
 export const Container = styled('div', {
 
@@ -26,7 +26,7 @@ export const ContainerInput = styled('div', {
     height: '47px',
     margin: '-2px 0',
     width: '3px',
-    background: darkTheme.colors.grayNoAuth
+    background: darkTheme.colors.icons
   },
 
   variants: {
@@ -51,7 +51,7 @@ export const InputA = styled('input', {
   color: darkTheme.colors.hiContrast,
 
   "&::placeholder": {
-    color: darkTheme.colors.grayIcon
+    color: darkTheme.colors.icons
   }
 })
 
@@ -69,11 +69,6 @@ export const InputB = styled('label', {
   borderBottomRightRadius: '5px',
   margin: '-2px -2px -2px 0',
 
-  '&:hover': {
-    cursor: 'pointer',
-    background: '#ffffff25'
-  },
-
   variants: {
     progresso: {
       ni: {
@@ -82,6 +77,20 @@ export const InputB = styled('label', {
         }
       }
     },
+    dark: {
+      true: {
+        '&:hover': {
+          cursor: 'pointer',
+          background: '#ffffff25'
+        },
+      },
+      false: {
+        '&:hover': {
+          cursor: 'pointer',
+          background: '#00000025'
+        },
+      }
+    }
   }
 })
 
@@ -89,7 +98,7 @@ export const SpanMsg = styled('span', {
 
   position: 'relative',
   bottom: '8px',
-  color: '#ffffff90',
+  color: darkTheme.colors.hiContrast,
   fontSize: '1.4rem',
   textTransform: 'capitalize',
 
@@ -155,7 +164,7 @@ export const Progress = styled('span', {
 export const Icon = styled('div', {
 
   position: 'absolute',
-  color: darkTheme.colors.grayIcon,
+  color: darkTheme.colors.icons,
   top: '1.25rem',
   left: 10,
   display: 'flex',

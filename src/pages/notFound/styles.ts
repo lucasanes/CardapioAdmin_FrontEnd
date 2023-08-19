@@ -43,7 +43,7 @@ export const Container = styled('div', {
   },
 
   h3: {
-    color: darkTheme.colors.grayIcon,
+    color: darkTheme.colors.icons,
     fontSize: '1.8rem',
     fontFamily: 'Roboto',
     fontWeight: '100',

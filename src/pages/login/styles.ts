@@ -4,7 +4,7 @@ export const Container = styled('div', {
 
   width: '100%',
   height: '100vh',
-  background: darkTheme.colors.loContrast,
+  background: darkTheme.colors.body,
   display: 'flex',
   justifyContent: 'center',
   padding: '4rem',
@@ -18,7 +18,7 @@ export const Card = styled('div', {
   width: '100%',
   maxWidth: '400px',
   height: 'fit-content',
-  background: darkTheme.colors.grayNoAuth,
+  background: darkTheme.colors.content,
   borderRadius: '1rem',
   padding: '6rem 3rem 3rem 3rem',
   display: 'flex',
@@ -78,14 +78,8 @@ export const Button = styled('button', {
   padding: '1.5rem',
   transition: '.3s',
 
-  variants: {
-    desabilitado: {
-      false: {
-        '&:hover': {
-          filter: darkTheme.animations.buttonHover
-        }
-      }
-    }
+  '&:hover': {
+    filter: darkTheme.animations.buttonHover
   }
 
 });
