@@ -52,7 +52,7 @@ export const Content = styled(Dialog.Panel, {
   margin: 'auto',
   animation: `${animation} .3s`,
   borderRadius: '1rem',
-  boxShadow: '0px 0px 15px #aaaaaa',
+  boxShadow: '0px 0px 20px #000000',
 
   variants: {
     animation: {
