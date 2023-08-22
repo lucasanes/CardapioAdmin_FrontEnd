@@ -1,4 +1,4 @@
-import { SelectHTMLAttributes, useState, useEffect } from 'react';
+import { SelectHTMLAttributes, useState } from 'react';
 import { Container, ContainerInput, InputB } from './styles'
 
 interface InputProps extends SelectHTMLAttributes<HTMLSelectElement> {
