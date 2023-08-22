@@ -30,7 +30,8 @@ export const Categorias = styled('div', {
   alignContent: 'flex-start',
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 300px))',
-  gap: '2rem'
+  gap: '2rem',
+  borderRadius: '1rem'
 
 });
 
@@ -43,7 +44,8 @@ export const Produtos = styled('div', {
   alignContent: 'flex-start',
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem'
+  gap: '2rem',
+  borderRadius: '1rem'
 
 });
 
