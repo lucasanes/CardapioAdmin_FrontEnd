@@ -55,6 +55,19 @@ export const Header = styled('div', {
     width: 'fit-content'
   },
 
+  '.namesadd': {
+    color: darkTheme.colors.hiContrast,
+    fontSize: '1.6rem',
+    wordBreak: 'break-word',
+    overflow: 'hidden',
+    display: '-webkit-box',
+    '-webkit-box-orient': 'vertical',
+    '-webkit-line-clamp': 1,
+    textTransform: 'capitalize',
+    width: 'fit-content',
+    marginBottom: '1rem'
+  },
+
   '.code': {
     color: darkTheme.colors.hiContrast,
     fontSize: '1.6rem',
@@ -83,11 +96,11 @@ export const Header = styled('div', {
 
 export const Price = styled('span', {
 
+  background: 'none',
   color: darkTheme.colors.hiContrast,
   border: '1px solid ' + darkTheme.colors.hiContrast,
   padding: '.5rem 1rem',
   borderRadius: '5px',
-
 });
 
 export const Active = styled('div', {
@@ -98,7 +111,7 @@ export const Active = styled('div', {
 
 });
 
-export const Span = styled('span', {
+export const Button = styled('button', {
 
   width: 100,
   textAlign: 'center',
@@ -106,6 +119,7 @@ export const Span = styled('span', {
   color: darkTheme.colors.loContrast,
   padding: '.5rem 0rem',
   fontSize: '1.5rem',
+  border: 'none',
 
   '@sm': {
     fontSize: '1.3rem',
@@ -125,10 +139,10 @@ export const Span = styled('span', {
   variants: {
     active: {
       true: {
-        background: darkTheme.colors.hiContrast
+        background: darkTheme.colors.midContrast
       },
       false: {
-        opacity: 0.5
+        opacity: 0.2
       }
     }
   }

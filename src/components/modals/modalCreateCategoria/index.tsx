@@ -24,13 +24,12 @@ export function ModalCreateCategoria({ setList, setClose }: { setList: React.Dis
 
     e.preventDefault()
 
-    const validatorNome = validator.nomeCategoria(nome)
     const validatorImagem = validator.imagem(imagem, 'Sua categoria')
 
     try {
 
-      if (validatorNome != null) {
-        setValidatorError({ error: 'nome', msg: validatorNome })
+      if (nome.length < 1) {
+        setValidatorError({ error: 'nome', msg: 'Campo não preenchido.' })
         return
       }
 
@@ -38,6 +37,8 @@ export function ModalCreateCategoria({ setList, setClose }: { setList: React.Dis
         setValidatorError({ error: 'imagem', msg: validatorImagem })
         return
       }
+
+      setValidatorError({ error: '', msg: '' })
 
       const response = await api.post('/categoria', {
 

@@ -41,6 +41,7 @@ export const Body = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  gap: '2rem'
 
 });

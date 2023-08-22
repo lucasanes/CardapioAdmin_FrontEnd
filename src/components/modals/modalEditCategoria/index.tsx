@@ -30,13 +30,12 @@ export function ModalEditCategoria({ data, setClose }: { data: Categorias, setCl
 
     e.preventDefault()
 
-    const validatorNome = validator.nomeCategoria(nome)
     const validatorImagem = validator.imagem(imagem, 'Sua categoria')
 
     try {
 
-      if (validatorNome != null) {
-        setValidatorError({ error: 'nome', msg: validatorNome })
+      if (nome.length < 1) {
+        setValidatorError({ error: 'nome', msg: 'Campo não preenchido.' })
         return
       }
 
@@ -44,6 +43,8 @@ export function ModalEditCategoria({ data, setClose }: { data: Categorias, setCl
         setValidatorError({ error: 'imagem', msg: validatorImagem })
         return
       }
+
+      setValidatorError({ error: '', msg: '' })
 
       await api.put(`/categoria/${data.id}`, {
         nome,

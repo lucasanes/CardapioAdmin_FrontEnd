@@ -11,6 +11,7 @@ import { Search } from '../../components/search';
 import { Modal } from '../../components/modal';
 import { ModalCreateCategoria } from '../../components/modals/modalCreateCategoria';
 import { Produtos } from './produtos';
+import { ModalCreateProduto } from '../../components/modals/modalCreateProduto';
 
 export function Dashboard() {
 
@@ -28,8 +29,6 @@ export function Dashboard() {
   const { token } = useAuth()
 
   useEffect(() => {
-
-    console.log(modalCreateProdutoIsOpen)
 
     if (innerWidth < 500) {
       setIsLow(2)
@@ -104,6 +103,10 @@ export function Dashboard() {
 
       <Modal isOpen={modalCreateCategoriaIsOpen} setOpen={setModalCreateCategoriaIsOpen}>
         <ModalCreateCategoria setClose={() => setModalCreateCategoriaIsOpen(false)} setList={setCategorias} />
+      </Modal>
+
+      <Modal isOpen={modalCreateProdutoIsOpen} setOpen={setModalCreateProdutoIsOpen}>
+        <ModalCreateProduto setClose={() => setModalCreateProdutoIsOpen(false)} list={categorias} setList={setCategorias} />
       </Modal>
 
       <VerticalMenu setBody={setBody} />

@@ -4,16 +4,17 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string,
+  valorMax?: number,
   label: string,
   type?: string,
   valor: string | number,
   setValor: React.Dispatch<React.SetStateAction<any>>,
   children?: React.ReactNode,
   erro?: string,
-  marginBottom?: number
+  marginBottom?: number,
 }
 
-export function Input({ name, label, type = 'text', valor, setValor, children, erro, marginBottom = 0, ...rest }: InputProps) {
+export function Input({ name, valorMax, label, type = 'text', valor, setValor, children, erro, marginBottom = 0, ...rest }: InputProps) {
 
   const [active, setActive] = useState(false)
   const [showPass, setShowPass] = useState(false)
@@ -23,9 +24,35 @@ export function Input({ name, label, type = 'text', valor, setValor, children, e
       <ContainerInput active={active}>
         <Icon active={active}>{children}</Icon>
         <InputB
-          name={name} defaultValue={valor} type={type == 'password' && showPass ? 'text' : type} placeholder={label}
+          name={name} value={valor} type={type == 'password' && showPass ? 'text' : (type == 'password') ? 'password' : 'text'} placeholder={label}
           onFocus={() => setActive(true)} onBlur={() => setActive(false)}
-          onChange={(e) => setValor(e.target.value)} {...rest}
+          onChange={(e) => {
+            if (type == 'float') {
+              let newValue = e.target.value.replace(/[^0-9,]/g, '')
+              if (newValue.indexOf(',') !== -1) {
+                const parts = newValue.split(',');
+                newValue = parts[0] + ',' + parts.slice(1).join('');
+              }
+              if (valorMax) {
+                if (Number(newValue.replace(',', '.')) <= valorMax) {
+                  setValor(newValue)
+                }
+              } else {
+                setValor(newValue)
+              }
+            } else if (type == 'number') {
+              const newValue = e.target.value.replace(/[^0-9]/g, '')
+              if (valorMax) {
+                if (Number(newValue) <= valorMax) {
+                  setValor(newValue)
+                }
+              } else {
+                setValor(newValue)
+              }
+            } else {
+              setValor(e.target.value)
+            }
+          }} {...rest}
         />
         {type == 'password' &&
           <Pass type='button' onClick={() => setShowPass(!showPass)}>

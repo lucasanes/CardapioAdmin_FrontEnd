@@ -1,6 +1,7 @@
 export interface ProdutosProps {
   id: string,
   code: string,
+  ativado: boolean,
   nome: string,
   descricao: string,
   imagem: string,

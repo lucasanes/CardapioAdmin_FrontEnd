@@ -12,6 +12,8 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
 
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
+  const [active, setActive] = useState(data.ativado)
+
   const { token } = useAuth()
 
   async function handleDelete() {
@@ -34,6 +36,15 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
     return formattedPrice
   }
 
+  async function handleUpdateActive() {
+    try {
+      await api.put(`/produto/${data.id}`, { ativado: !active, preco: data.preco }, { headers: { Authorization: token } })
+      setActive(!active)
+    } catch (e: any) {
+      console.log(e.data)
+    }
+  }
+
   return (
     <S.Container>
 
@@ -47,15 +58,17 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
         </div>
         <div>
           <span className='name'>{data.nome}</span>
+          {data.nomesAdd.length > 0 && <span className='namesadd'>{data.nomesAdd.join(' - ')}</span>}
           <span className='code'>Código: {data.code}</span>
           <p>{data.descricao}</p>
         </div>
       </S.Header>
-      <S.Price>{formatPrice(data.preco)}</S.Price>
+
+      <S.Price>{data.precosAdd.length > 0 ? formatPrice(Math.min(...data.precosAdd)) + ' - ' + formatPrice(Math.max(...data.precosAdd)) : formatPrice(data.preco)}</S.Price>
 
       <S.Active>
-        <S.Span active={false} className={'desactive'}>Desativado</S.Span>
-        <S.Span active={true} className={'active'}>Ativado</S.Span>
+        <S.Button onClick={() => active && handleUpdateActive()} active={!active} className={'desactive'}>Desativado</S.Button>
+        <S.Button onClick={() => !active && handleUpdateActive()} active={active} className={'active'}>Ativado</S.Button>
       </S.Active>
       <S.Buttons>
         <button>Editar</button>

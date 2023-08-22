@@ -60,14 +60,4 @@ export default class Validator {
 
   }
 
-  nomeCategoria(value: string) {
-
-    if (value.length < 1) {
-      return 'Campo não preenchido.'
-    }
-
-    return null
-
-  }
-
 }
