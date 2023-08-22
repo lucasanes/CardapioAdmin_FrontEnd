@@ -12,10 +12,11 @@ import { Modal } from '../../components/modal';
 import { ModalCreateCategoria } from '../../components/modals/modalCreateCategoria';
 import { Produtos } from './produtos';
 import { ModalCreateProduto } from '../../components/modals/modalCreateProduto';
+import { useCategorias } from '../../contexts/categorias';
 
 export function Dashboard() {
 
-  const [categorias, setCategorias] = useState<Array<CategoriasProps>>([])
+  const { categorias, setCategorias } = useCategorias()
   const [categoriasMostradas, setCategoriasMostradas] = useState<Array<CategoriasProps>>([])
 
   const [body, setBody] = useState(0)
@@ -106,7 +107,7 @@ export function Dashboard() {
       </Modal>
 
       <Modal isOpen={modalCreateProdutoIsOpen} setOpen={setModalCreateProdutoIsOpen}>
-        <ModalCreateProduto setClose={() => setModalCreateProdutoIsOpen(false)} list={categorias} setList={setCategorias} />
+        <ModalCreateProduto setClose={() => setModalCreateProdutoIsOpen(false)} setList={setCategorias} />
       </Modal>
 
       <VerticalMenu setBody={setBody} />

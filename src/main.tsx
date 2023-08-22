@@ -5,13 +5,16 @@ import { Routes } from './routes'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 import { ThemeProvider } from './contexts/theme';
+import { CategoriasProvider } from './contexts/categorias';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <ThemeProvider>
-      <GlobalStyles />
-      <Routes />
-      <ToastContainer />
+      <CategoriasProvider>
+        <GlobalStyles />
+        <Routes />
+        <ToastContainer />
+      </CategoriasProvider>
     </ThemeProvider>
   </AuthProvider>
 )

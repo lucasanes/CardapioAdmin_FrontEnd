@@ -4,35 +4,38 @@ import { InputImg } from '../../inputImg';
 import * as S from './styles'
 import { IoCamera } from 'react-icons/io5';
 import { HiClipboardList } from 'react-icons/hi'
-import { GiPriceTag } from 'react-icons/gi'
 import { api } from '../../../services/api';
 import { useAuth } from '../../../contexts/auth';
 import Validator from '../../../services/validator';
-import { CategoriasProps } from '../../../pages/dashboard/types';
+import { ProdutosProps } from '../../../pages/dashboard/types';
 import { Select } from '../../select';
 import { useCategorias } from '../../../contexts/categorias';
 import { MdQrCode2 } from 'react-icons/md';
+import { GiPriceTag } from 'react-icons/gi';
 
-export function ModalCreateProduto({ setList, setClose }: { setList: React.Dispatch<React.SetStateAction<CategoriasProps[]>>, setClose: () => void }) {
+export function ModalEditProduto({ data, setClose }: { data: ProdutosProps, setClose: () => void }) {
 
   const { token } = useAuth()
   const validator = new Validator()
 
-  const { categorias } = useCategorias()
+  const [nome, setNome] = useState(data.nome)
+  const [code, setCode] = useState(data.code.toString())
+  const [descricao, setDescricao] = useState(data.descricao)
+  const [preco, setPreco] = useState(data.preco.toString().replace('.', ','))
+  const [imagem, setImagem] = useState(data.imagem)
+  const [categoriaId, setCategoriaId] = useState(data.categoriaId)
 
-  const [nome, setNome] = useState('')
-  const [code, setCode] = useState('')
-  const [descricao, setDescricao] = useState('')
-  const [preco, setPreco] = useState('')
-  const [imagem, setImagem] = useState('')
-  const [categoriaId, setCategoriaId] = useState(categorias[0].id)
+  const { categorias } = useCategorias()
 
   interface Varicao {
     nome: string,
     preco: string
   }
 
-  const [variacoes, setVariacoes] = useState<Varicao[]>([])
+  const [variacoes, setVariacoes] = useState<Varicao[]>(data.nomesAdd.map((nome, index) => ({
+    nome: nome,
+    preco: data.precosAdd[index].toString()
+  })))
 
   const [validatorError, setValidatorError] = useState({ error: '', msg: '' })
 
@@ -97,37 +100,34 @@ export function ModalCreateProduto({ setList, setClose }: { setList: React.Dispa
         return Number(variacao.preco)
       })
 
-      const response = await api.post('/produto', {
+      await api.put(`/produto/${data.id}`, {
 
         nome,
         imagem,
         code: Number(code),
         descricao,
         preco: Number(preco.replace(',', '.')),
-        categoriaId,
         nomesAdd,
         precosAdd,
-        created_at: new Date().toLocaleString(),
 
       }, { headers: { Authorization: token } })
 
-      setList((prev) => {
-        const newData = prev.map(categoria => {
-          if (categoria.id == categoriaId) {
-            return {
-              ...categoria,
-              produtos: [...categoria.produtos, response.data]
-            }
-          } else {
-            return categoria
-          }
-        })
-        return newData
-      })
+      data.nome = nome
+      data.imagem = imagem
+      data.code = code
+      data.descricao = descricao
+      data.preco = Number(preco.replace(',', '.'))
+      data.nomesAdd = nomesAdd
+      data.precosAdd = precosAdd
+
       setClose()
 
     } catch (e: any) {
-      console.log(e.response)
+
+      if (e.response.data.msg.includes('código')) {
+        setValidatorError({ error: 'code', msg: e.response.data.msg })
+        return
+      }
     }
 
   }
@@ -136,7 +136,7 @@ export function ModalCreateProduto({ setList, setClose }: { setList: React.Dispa
     <S.Container>
       <form onSubmit={createCategory}>
 
-        <h1>Novo Produto</h1>
+        <h1>Editar Produto</h1>
 
         <Input label='Nome' name='Categoria' valor={nome} setValor={setNome} marginBottom={2} erro={validatorError.error == 'nome' ? validatorError.msg : ''}>
           <HiClipboardList size={20} />

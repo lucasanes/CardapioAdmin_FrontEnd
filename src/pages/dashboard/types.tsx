@@ -8,8 +8,8 @@ export interface ProdutosProps {
   created_at: string,
   categoriaId: string,
   preco: number,
-  nomesAdd: [],
-  precosAdd: []
+  nomesAdd: string[],
+  precosAdd: number[]
 }
 
 export interface CategoriasProps {

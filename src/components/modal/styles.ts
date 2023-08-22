@@ -14,7 +14,7 @@ export const ContentContainer = styled("div", {
   backgroundColor: "#00000095",
   overflowY: 'auto',
   overflowX: 'hidden',
-  padding: '2rem',
+  padding: '3rem 2rem',
   zIndex: 10,
 
 });

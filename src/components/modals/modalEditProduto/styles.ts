@@ -2,7 +2,7 @@ import { darkTheme, styled } from '../../../stitches.config';
 
 export const Container = styled('div', {
 
-  maxWidth: '380px',
+  maxWidth: '38rem',
   background: darkTheme.colors.modal,
   padding: '3rem 2rem',
   borderRadius: '1rem',

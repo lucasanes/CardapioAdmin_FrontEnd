@@ -1,6 +1,6 @@
 import { ButtonDelete } from '../../../components/buttonDelete';
 import { Modal } from '../../../components/modal';
-import { ModalEditCategoria } from '../../../components/modals/modalEditCategoria';
+import { ModalEditProduto } from '../../../components/modals/modalEditProduto';
 import { useAuth } from '../../../contexts/auth';
 import { api } from '../../../services/api';
 import { CategoriasProps, ProdutosProps } from '../types';
@@ -41,7 +41,6 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
       await api.put(`/produto/${data.id}`, { ativado: !active, preco: data.preco }, { headers: { Authorization: token } })
       setActive(!active)
     } catch (e: any) {
-      console.log(e.data)
     }
   }
 
@@ -49,7 +48,7 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
     <S.Container>
 
       <Modal isOpen={modalIsOpen} setOpen={setModalIsOpen}>
-        <ModalEditCategoria data={data} setClose={() => setModalIsOpen(false)} />
+        <ModalEditProduto data={data} setClose={() => setModalIsOpen(false)} />
       </Modal>
 
       <S.Header>
@@ -71,7 +70,7 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
         <S.Button onClick={() => !active && handleUpdateActive()} active={active} className={'active'}>Ativado</S.Button>
       </S.Active>
       <S.Buttons>
-        <button>Editar</button>
+        <button onClick={() => setModalIsOpen(true)}>Editar</button>
         <ButtonDelete handleExecute={handleDelete} />
       </S.Buttons>
     </S.Container>

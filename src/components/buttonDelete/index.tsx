@@ -1,5 +1,5 @@
 import { Container } from './styles'
-import { ModalDeleteConfirm } from '../modalDeleteConfirm';
+import { ModalDeleteConfirm } from '../modals/modalDeleteConfirm';
 import { Modal } from '../modal';
 import { useState } from 'react';
 
