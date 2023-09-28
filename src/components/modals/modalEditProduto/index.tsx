@@ -7,13 +7,13 @@ import { HiClipboardList } from 'react-icons/hi'
 import { api } from '../../../services/api';
 import { useAuth } from '../../../contexts/auth';
 import Validator from '../../../services/validator';
-import { ProdutosProps } from '../../../pages/dashboard/types';
+import { CategoriasProps, ProdutosProps } from '../../../pages/dashboard/types';
 import { Select } from '../../select';
 import { useCategorias } from '../../../contexts/categorias';
 import { MdQrCode2 } from 'react-icons/md';
 import { GiPriceTag } from 'react-icons/gi';
 
-export function ModalEditProduto({ data, setClose }: { data: ProdutosProps, setClose: () => void }) {
+export function ModalEditProduto({ data, setList, setClose }: { data: ProdutosProps, setList: React.Dispatch<React.SetStateAction<CategoriasProps[]>>, setClose: () => void }) {
 
   const { token } = useAuth()
   const validator = new Validator()
@@ -109,6 +109,7 @@ export function ModalEditProduto({ data, setClose }: { data: ProdutosProps, setC
         preco: Number(preco.replace(',', '.')),
         nomesAdd,
         precosAdd,
+        categoriaId
 
       }, { headers: { Authorization: token } })
 
@@ -119,6 +120,22 @@ export function ModalEditProduto({ data, setClose }: { data: ProdutosProps, setC
       data.preco = Number(preco.replace(',', '.'))
       data.nomesAdd = nomesAdd
       data.precosAdd = precosAdd
+
+      if (categoriaId != data.categoriaId) {
+
+        setList(rest => {
+          const categoriaAntiga = rest.filter(categoria => categoria.id == data.categoriaId)[0]
+          const categoriaNova = rest.filter(categoria => categoria.id == categoriaId)[0]
+
+          const produtosCategoriaAntigaFiltrados = categoriaAntiga.produtos.filter(produto => produto.id != data.id)
+          categoriaAntiga.produtos = produtosCategoriaAntigaFiltrados
+          categoriaNova.produtos.push(data)
+          return [...rest]
+        })
+
+        data.categoriaId = categoriaId
+
+      }
 
       setClose()
 
@@ -176,7 +193,12 @@ export function ModalEditProduto({ data, setClose }: { data: ProdutosProps, setC
           </div>
         )}
 
-        <S.ButtonVariacao onClick={() => setVariacoes(rest => [...rest, { nome: '', preco: '' }])} type='button'>Adicionar variação</S.ButtonVariacao>
+        <S.ButtonVariacao style={{ marginBottom: '2rem' }} onClick={() => setVariacoes(rest => [...rest, { nome: '', preco: '' }])} type='button'>Adicionar variação</S.ButtonVariacao>
+        {variacoes.length > 0 && <S.ButtonVariacao onClick={() => {
+          const aDeletar = variacoes.pop()
+          setVariacoes(variacoes.filter(variacao => variacao != aDeletar))
+        }} type='button'>Remover variação
+        </S.ButtonVariacao>}
 
         <Input label='Descrição' name='Descricao' valor={descricao} setValor={setDescricao} marginBottom={2} erro={validatorError.error == 'descricao' ? validatorError.msg : ''}>
           <HiClipboardList size={20} />

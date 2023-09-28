@@ -48,7 +48,7 @@ export function Produto({ data, setList }: { data: ProdutosProps, setList: React
     <S.Container>
 
       <Modal isOpen={modalIsOpen} setOpen={setModalIsOpen}>
-        <ModalEditProduto data={data} setClose={() => setModalIsOpen(false)} />
+        <ModalEditProduto data={data} setList={setList} setClose={() => setModalIsOpen(false)} />
       </Modal>
 
       <S.Header>

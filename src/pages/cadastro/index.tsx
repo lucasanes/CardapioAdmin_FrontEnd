@@ -11,18 +11,25 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { InputImg } from '../../components/inputImg';
+import { Toggle } from '../../components/toggle';
+import { HiClipboardDocumentList } from 'react-icons/hi2'
 
 export function Cadastro({ }) {
 
   const [ready, setReady] = useState(false)
 
+  const [juridica, setJuridica] = useState(false)
   const [username, setUsername] = useState('')
+  const [cpf, setCpf] = useState('')
+  const [cnpj, setCnpj] = useState('')
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [senhaConfirmada, setSenhaConfirmada] = useState('')
   const [nomeRestaurante, setNomeRestaurante] = useState('')
   const [imagem, setImagem] = useState('')
   const [codigo, setCodigo] = useState('')
+
+  const regex = /^(?!000\.|11\.|22\.|33\.|44\.|55\.|66\.|77\.|88\.|99\.)\d{3}\.\d{3}\.\d{3}-\d{2}$/
 
   const [validateError, setValidateError] = useState({ error: '', msg: '' })
 
@@ -42,6 +49,7 @@ export function Cadastro({ }) {
     e.preventDefault()
 
     const validateUsername = validator.username(username)
+    const validateCPF = validator.cpf(cpf)
     const validateEmail = validator.email(email)
     const validateSenha = validator.senha(senha)
     const validateSenhaConfirm = validator.senha(senhaConfirmada)
@@ -49,6 +57,11 @@ export function Cadastro({ }) {
 
     if (validateUsername != null) {
       setValidateError({ error: 'username', msg: validateUsername })
+      return
+    }
+
+    if (validateCPF != null) {
+      setValidateError({ error: 'cpf', msg: validateCPF })
       return
     }
 
@@ -123,10 +136,23 @@ export function Cadastro({ }) {
         <Card>
           <Link to={'/'}><AiOutlineArrowLeft size={20} />Voltar para login</Link>
           <div className='inputs'>
+            <Toggle span='Pessoa jurídica?' classNumber={1} style={{ marginBottom: '2rem' }} onChange={() => setJuridica(!juridica)} />
             <Input name='username' label='Nome' valor={username} setValor={setUsername} marginBottom={3}
               erro={validateError.error == 'username' ? validateError.msg : ''} autoComplete='off' disabled={!ready}>
               <FaUserAlt size={16} />
             </Input>
+
+            {juridica ?
+              <Input type='cnpj' name='cnpj' label='CNPJ' valor={cnpj} setValor={setCnpj} marginBottom={3}
+                erro={validateError.error == 'cnpj' ? validateError.msg : ''} autoComplete='off' disabled={!ready}>
+                <HiClipboardDocumentList size={20} />
+              </Input>
+              :
+              <Input type='cpf' name='cpf' label='CPF' valor={cpf} setValor={setCpf} marginBottom={3}
+                erro={validateError.error == 'cpf' ? validateError.msg : ''} autoComplete='off' disabled={!ready}>
+                <HiClipboardDocumentList size={20} />
+              </Input>
+            }
 
             <InputImg label='Foto' valor={imagem} setValor={setImagem} marginBottom={3} autoComplete='off' disabled={!ready}
               erro={validateError.error == 'imagem' ? validateError.msg : ''}>

@@ -176,7 +176,12 @@ export function ModalCreateProduto({ setList, setClose }: { setList: React.Dispa
           </div>
         )}
 
-        <S.ButtonVariacao onClick={() => setVariacoes(rest => [...rest, { nome: '', preco: '' }])} type='button'>Adicionar variação</S.ButtonVariacao>
+        <S.ButtonVariacao style={{ marginBottom: '2rem' }} onClick={() => setVariacoes(rest => [...rest, { nome: '', preco: '' }])} type='button'>Adicionar variação</S.ButtonVariacao>
+        {variacoes.length > 0 && <S.ButtonVariacao onClick={() => {
+          const aDeletar = variacoes.pop()
+          setVariacoes(variacoes.filter(variacao => variacao != aDeletar))
+        }} type='button'>Remover variação
+        </S.ButtonVariacao>}
 
         <Input label='Descrição' name='Descricao' valor={descricao} setValor={setDescricao} marginBottom={2} erro={validatorError.error == 'descricao' ? validatorError.msg : ''}>
           <HiClipboardList size={20} />
