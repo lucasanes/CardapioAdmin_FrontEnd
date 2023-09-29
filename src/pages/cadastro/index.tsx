@@ -29,8 +29,6 @@ export function Cadastro({ }) {
   const [imagem, setImagem] = useState('')
   const [codigo, setCodigo] = useState('')
 
-  const regex = /^(?!000\.|11\.|22\.|33\.|44\.|55\.|66\.|77\.|88\.|99\.)\d{3}\.\d{3}\.\d{3}-\d{2}$/
-
   const [validateError, setValidateError] = useState({ error: '', msg: '' })
 
   const validator = new Validator()
